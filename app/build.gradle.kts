@@ -1,17 +1,14 @@
- plugins {
+plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.compose)
-     apply plugin: 'kotlin-kapt'
-     apply plugin: "androidx.navigation.safeargs.kotlin"
+    alias(libs.plugins.androidx.navigation.safeargs)
 }
 
 android {
     namespace = "com.example.runningapp"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.runningapp"
@@ -41,6 +38,12 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -60,60 +63,48 @@ dependencies {
 
 
     // Material Design
-    implementation 'com.google.android.material:material:1.3.0-alpha01'
+    implementation("com.google.android.material:material:1.12.0")
 
     // Architectural Components
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
 
     // Room
-    implementation "androidx.room:room-runtime:2.2.5"
-    kapt "androidx.room:room-compiler:2.2.5"
-
-    // Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:2.2.5"
+    implementation("androidx.room:room-runtime:2.8.3")
+    implementation("androidx.room:room-ktx:2.8.3")
+    kapt("androidx.room:room-compiler:2.8.3")
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5'
-
-    // Coroutine Lifecycle Scopes
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
     // Navigation Components
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.5")
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     // Google Maps Location Services
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 
     // Dagger Core
-    implementation "com.google.dagger:dagger:2.28.1"
-    kapt "com.google.dagger:dagger-compiler:2.25.2"
+    implementation("com.google.dagger:dagger:2.52")
+    kapt("com.google.dagger:dagger-compiler:2.52")
 
     // Dagger Android
-    api 'com.google.dagger:dagger-android:2.28.1'
-    api 'com.google.dagger:dagger-android-support:2.28.1'
-    kapt 'com.google.dagger:dagger-android-processor:2.23.2'
+    api("com.google.dagger:dagger-android:2.52")
+    api("com.google.dagger:dagger-android-support:2.52")
+    kapt("com.google.dagger:dagger-android-processor:2.52")
 
     // Easy Permissions
-    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation("pub.devrel:easypermissions:3.0.0")
 
     // Timber
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     // MPAndroidChart
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-
-
-
-
-
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
