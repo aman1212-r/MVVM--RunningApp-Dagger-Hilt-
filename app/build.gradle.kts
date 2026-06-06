@@ -35,9 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures {
-        buildConfig = true
         compose = true
-        viewBinding = true
     }
 }
 
@@ -46,10 +44,6 @@ kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
     }
-}
-
-secrets {
-    defaultPropertiesFileName = "local.defaults.properties"
 }
 
 dependencies {
@@ -61,8 +55,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,7 +62,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
+    implementation(libs.play.services.maps)
 
     // Material Design
     implementation("com.google.android.material:material:1.12.0")
@@ -96,9 +88,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
-    // Google Maps Location Services
+    // Google Location Services
     implementation("com.google.android.gms:play-services-location:21.3.0")
-    implementation(libs.play.services.maps)
 
     // Dagger Core
     implementation("com.google.dagger:dagger:2.52")
